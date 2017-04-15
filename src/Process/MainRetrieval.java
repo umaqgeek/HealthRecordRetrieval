@@ -37,17 +37,17 @@ public class MainRetrieval {
         return row_nums;
     }
     
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         MainRetrieval mr = new MainRetrieval();
         //mr.startProcess("DTO|2013-06-27 16:04:11.064|-^Yellow fever vaccination ^-|L01CD010001P3001^PACLITAXEL^L01CD010001P3001|^INJECTION, LIQUID^|^^|^Daily^||1|150MG/25ML|^^Week|2 Week|1|^^||^^^^^|Before meals|<cr>");
         mr.startProcess("MSH|^~|CIS^T12109|<cr>\n" +
 "PDI|8910310652137|OMAR MUKHTAR BIN HAMBARAN^891031065213^-^Male^31/10/1989^O^-^|<cr>\n" +
-"VTS|2015-01-06 17:04:31.658|^180^120^^^^^50^170^^^^80^^^^^^^^^2015-01-06 17:04:31.658^^^^null^null^null^null^null^null^5^null^|<cr>");
+"PIS|2015-01-06 17:04:31.658|^180^120^^^^^50^170^^^^80^^^^^^^^^2015-01-06 17:04:31.658^^^^null^null^null^null^null^null^5^null^|<cr>");
 //        mr.startProcess("MSH|^~|CIS^T12109|<cr>\n" +
 //"\n" +
 //"PDI|PMS10015|umar umar^891031065213^Malay^Male^31/10/1989^O^Single^|<cr>\n" +
 //"");
-        String dto[][] = mr.getData("VTS");
+        String dto[][] = mr.getData("PIS");
         int row = mr.getRowNums();
         for(int i = 0; i < row; i++) {
             for(int j = 0; j < dto[i].length; j++) {

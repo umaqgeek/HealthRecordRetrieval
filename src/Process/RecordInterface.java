@@ -33,6 +33,10 @@ public class RecordInterface {
     protected static MSH1 mshData[] = new MSH1[full_length];
     protected static PEM1 pemData[] = new PEM1[full_length];
     protected static PNT1 pntData[] = new PNT1[full_length];
+    protected static ORC1 orcData[] = new ORC1[full_length]; // add later 15 Apr 2017
+    protected static ROS1 rosData[] = new ROS1[full_length]; // add later 15 Apr 2017
+    protected static LIO1 lioData[] = new LIO1[full_length]; // add later 15 Apr 2017
+    protected static PIS1 pisData[] = new PIS1[full_length]; // add later 15 Apr 2017
     protected RecordInterface() {
         for(int i = 0; i < full_length; i++) {
             ccnData[i] = new CCN1();
@@ -53,6 +57,10 @@ public class RecordInterface {
             mshData[i] = new MSH1();
             pemData[i] = new PEM1();
             pntData[i] = new PNT1();
+            orcData[i] = new ORC1();
+            rosData[i] = new ROS1();
+            lioData[i] = new LIO1();
+            pisData[i] = new PIS1();
         }
     }
     protected void setInputRecord(String ir) {
@@ -225,6 +233,38 @@ public class RecordInterface {
                 }
             }
             MainRetrieval.row_nums = ExtractorManager.pnt;
+        } else if (type.contains("ORC")) {
+            for(int i = 0; i < ExtractorManager.orc && i < full_length; i++) {
+                msg[i][0] = orcData[i].getEncounterDate();
+                for(int j = 1; j < orcData[i].getTokenData().length && j < full_length; j++) {
+                    msg[i][j] = orcData[i].getTokenData()[j-1];
+                }
+            }
+            MainRetrieval.row_nums = ExtractorManager.orc;
+        } else if (type.contains("ROS")) {
+            for(int i = 0; i < ExtractorManager.ros && i < full_length; i++) {
+                msg[i][0] = rosData[i].getEncounterDate();
+                for(int j = 1; j < rosData[i].getTokenData().length && j < full_length; j++) {
+                    msg[i][j] = rosData[i].getTokenData()[j-1];
+                }
+            }
+            MainRetrieval.row_nums = ExtractorManager.ros;
+        } else if (type.contains("LIO")) {
+            for(int i = 0; i < ExtractorManager.lio && i < full_length; i++) {
+                msg[i][0] = lioData[i].getEncounterDate();
+                for(int j = 1; j < lioData[i].getTokenData().length && j < full_length; j++) {
+                    msg[i][j] = lioData[i].getTokenData()[j-1];
+                }
+            }
+            MainRetrieval.row_nums = ExtractorManager.lio;
+        } else if (type.contains("PIS")) {
+            for(int i = 0; i < ExtractorManager.pis && i < full_length; i++) {
+                msg[i][0] = pisData[i].getEncounterDate();
+                for(int j = 1; j < pisData[i].getTokenData().length && j < full_length; j++) {
+                    msg[i][j] = pisData[i].getTokenData()[j-1];
+                }
+            }
+            MainRetrieval.row_nums = ExtractorManager.pis;
         }
         return msg;
     }

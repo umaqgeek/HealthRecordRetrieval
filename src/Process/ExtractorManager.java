@@ -32,6 +32,10 @@ public class ExtractorManager {
     protected static int msh = 0;
     protected static int pem = 0;
     protected static int pnt = 0;
+    protected static int orc = 0; // add later 15 Apr 2017
+    protected static int ros = 0; // add later 15 Apr 2017
+    protected static int lio = 0; // add later 15 Apr 2017
+    protected static int pis = 0; // add later 15 Apr 2017
     protected ExtractorManager() {
         ccn = 0;
         vts = 0;
@@ -51,6 +55,10 @@ public class ExtractorManager {
         msh = 0;
         pem = 0;
         pnt = 0;
+        orc = 0; // add later 15 Apr 2017
+        ros = 0; // add later 15 Apr 2017
+        lio = 0; // add later 15 Apr 2017
+        pis = 0; // add later 15 Apr 2017
     }
     protected void extract(String healthRecord) {
         tokenLine_history = healthRecord.split(">");
@@ -319,6 +327,62 @@ public class ExtractorManager {
                     RecordInterface.pntData[pnt].setDataField("");
                 }
                 pnt++;
+            } else if (TableType.contains("ORC")) {
+                RecordInterface.orcData[orc].setEncounterDate("");
+                try {
+                    RecordInterface.orcData[orc].setEncounterDate(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.orcData[orc].setEncounterDate("");
+                }
+                RecordInterface.orcData[orc].setDataField("");
+                try {
+                    RecordInterface.orcData[orc].setDataField(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.orcData[orc].setDataField("");
+                }
+                orc++;
+            } else if (TableType.contains("ROS")) {
+                RecordInterface.rosData[ros].setEncounterDate("");
+                try {
+                    RecordInterface.rosData[ros].setEncounterDate(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.rosData[ros].setEncounterDate("");
+                }
+                RecordInterface.rosData[ros].setDataField("");
+                try {
+                    RecordInterface.rosData[ros].setDataField(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.rosData[ros].setDataField("");
+                }
+                ros++;
+            } else if (TableType.contains("LIO")) {
+                RecordInterface.lioData[lio].setEncounterDate("");
+                try {
+                    RecordInterface.lioData[lio].setEncounterDate(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.lioData[lio].setEncounterDate("");
+                }
+                RecordInterface.lioData[lio].setDataField("");
+                try {
+                    RecordInterface.lioData[lio].setDataField(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.lioData[lio].setDataField("");
+                }
+                lio++;
+            } else if (TableType.contains("PIS")) {
+                RecordInterface.pisData[pis].setEncounterDate("");
+                try {
+                    RecordInterface.pisData[pis].setEncounterDate(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.pisData[pis].setEncounterDate("");
+                }
+                RecordInterface.pisData[pis].setDataField("");
+                try {
+                    RecordInterface.pisData[pis].setDataField(column[k++].equals("") ? "-" : column[k - 1]);
+                } catch (Exception e) {
+                    RecordInterface.pisData[pis].setDataField("");
+                }
+                pis++;
             }
         }
     }
